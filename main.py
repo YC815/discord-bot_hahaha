@@ -2,9 +2,10 @@ import discord
 from discord.ext import commands
 import os
 import random
+from discord.ext import commands
 
-bot = commands.Bot(intents=discord.Intents.default(), command_prefix='.')
-
+intents = discord.Intents.all()
+bot = commands.Bot(intents=intents, command_prefix='.')
 
 @bot.event
 async def on_ready():
@@ -22,16 +23,22 @@ async def on_ready():
         game = discord.Game('相對論')
     await bot.change_presence(status=discord.Status.online, activity=game)
 
-
 @bot.event
-async def on_menber_join(member):
+async def on_member_join(member):
     print(f'{member} join!')
-    channel = bot.get_channel()
-
-
+    channel = bot.get_channel(1035896049958662165)
+    await channel.send(str(member) +' 進入了道具庫，歡迎你的加入！')
+    
 @bot.event
-async def on_menber_remove(member):
+async def on_member_remove(member):
     print(f'{member} leave!')
+    channel = bot.get_channel(1035896049958662165)
+    await channel.send(str(member) + ' 離開了道具庫，我們有緣再見面QQ')
+
+@bot.command()
+async def ping(ctx):
+    await ctx.send("%s %d%s" % ("pong! ", int(bot.latency*1000), "(ms)"))
+
 bot.run(os.getenv('TOKEN'))
 
 
