@@ -10,7 +10,7 @@
             "request": "launch",
             "cwd":"${fileDirname}",
             "program": "${file}",
-            "console": "externalTerminal",
+            "console": "integratedTerminal",
             "env": {"PYTHONPATH": "${workspaceRoot}"},
         },
         {
