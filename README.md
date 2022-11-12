@@ -9,3 +9,4 @@ DiscordBot - HAHAHA機器人
 2. 更改資料夾[hahaha-discord_bot]的檔名
 3. 在這個目錄下新增檔案: [.env]
 4. 在[.env]中輸入: TOKEN=<You're bot token>  (<You're bot token>要輸入的是您的機器人的token)
+5. 完成後執行同的目錄下的[bot.py]
