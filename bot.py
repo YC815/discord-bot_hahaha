@@ -4,6 +4,7 @@ import random
 import json
 import os
 import time
+import random
 from dotenv import load_dotenv
 load_dotenv()
 
@@ -12,6 +13,10 @@ with open('./setting.json', 'r', encoding='utf8') as jfile:
 
 intents = discord.Intents.all()
 bot = commands.Bot(intents=intents, command_prefix='.')
+MAX_GUESS = 10
+flag = True
+ans_list = []
+guess_list = []
 
 
 @bot.event  # 開機
@@ -130,25 +135,5 @@ async def start_1a2b(ctx, user_a):
     [未完成]
     可以玩1a1b
     """
-    answer = []
-    for i in range(4):
-        answer.append(random.randint(0, 9))
-    print(answer)
-    a = b = n = 0
-    num = 0              # 新增 num 變數為 0，作為計算次數使用
-    t = time.time()      # 新增 t 變數為現在的時間
-    while a != 4:
-        num += 1         # 每次重複時將 num 增加 1
-        a = b = n = 0
-        user = list(str(user_a))
-        for i in user:
-            if int(user[n]) == answer[n]:
-                a += 1
-            else:
-                if int(i) in answer:
-                    b += 1
-            n += 1
-        await ctx.send(f'{a}A{b}B')
-    t = round((time.time() - t), 3)                # 當 a 等於 4 時，計算結束和開始的時間差
-    await ctx.send(f'答對了！總共猜了 {num} 次，用了 {t} 秒')   # 印出對應的文字
+    
 bot.run(os.getenv('TOKEN'))
