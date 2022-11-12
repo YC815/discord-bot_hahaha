@@ -1,4 +1,4 @@
-DiscordBot - HAHAHA機器人
+Discord機器人 - 哈哈哈 使用說明書｜Discord Bot - HAHAHA
 ===
 # 參考資料及工具
 - Embed生產器
