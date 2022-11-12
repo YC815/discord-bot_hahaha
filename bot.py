@@ -1,5 +1,6 @@
 import discord
 from discord.ext import commands
+from discord.ui import Button
 import random
 import json
 import os
@@ -129,11 +130,23 @@ async def on_raw_reaction_add(payload):
         await payload.member.add_roles(role)
 
 
+class Menu(discord.ui.View):
+    def __init__(self):
+        super().__init__()
+        self.value = None
+
+    @discord.ui.button(label="Click me!", style=discord.ButtonStyle.green, emoji="✅")
+    async def button1(self, interaction: discord.Interaction, button: discord.ui.Button):
+        await interaction.response.send_message("Hello world!")
+
+
 @bot.command()
-async def start_1a2b(ctx, user_a):
+@commands.has_permissions(administrator=True)
+async def test_button(ctx):
     """
-    [未完成]
-    可以玩1a1b
+    [管理員專用]
+    召喚測試用的按鈕（此指令為之後製作按鈕的範例）
     """
-    
+    view = Menu()
+    await ctx.reply(view=view)
 bot.run(os.getenv('TOKEN'))
